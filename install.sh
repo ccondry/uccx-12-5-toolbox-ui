@@ -10,8 +10,8 @@ if [ $? -eq 0 ]; then
     yarn build
   done
   echo "yarn build successful. copying dist files to www folder..."
-  mkdir -p /var/www/html/uccx-12-5-toolbox-ui
-  cp -rf dist/* /var/www/html/uccx-12-5-toolbox-ui/
+  mkdir -p /var/www/toolbox/uccx-12-5
+  cp -rf dist/* /var/www/toolbox/uccx-12-5/
   if [ $? -eq 0 ]; then
     echo "successfully installed uccx-12-5-toolbox-ui website files"
   else
