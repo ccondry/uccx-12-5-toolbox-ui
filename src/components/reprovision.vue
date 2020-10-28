@@ -8,16 +8,23 @@
       Would you like to provision again anyway?
     </p>
     <div class="buttons" style="justify-content: space-around;">
-      <b-field>
-        <b-button
-        :disabled="working.user.provision"
-        type="is-success"
-        rounded
-        @click.prevent="clickProvision"
-        >
-          {{ buttonText }}
-        </b-button>
-      </b-field>
+      <b-button
+      :disabled="working.user.provision"
+      type="is-success"
+      rounded
+      @click.prevent="clickProvision"
+      >
+        {{ buttonText }}
+      </b-button>
+
+      <b-button
+      :disabled="working.user.provision"
+      type="is-danger"
+      rounded
+      @click.prevent="clickDeprovision"
+      >
+        Delete Account
+      </b-button>
     </div>
   </panel>
 </template>
@@ -49,13 +56,26 @@ export default {
 
   methods: {
     ...mapActions([
-      'provisionUser'
+      'provisionUser',
+      'deprovisionUser'
     ]),
     startTimer () {
       // advance the timer every 1 second
       setInterval(() => {
         this.timerNow = new Date().getTime()
       }, 1000)
+    },
+    clickDeprovision () {
+      this.$buefy.dialog.confirm({
+        title: 'Delete Account',
+        message: 'Are you sure you want to delete your account?',
+        rounded: true,
+        confirmText: 'Confirm',
+        type: 'is-danger',
+        onConfirm: () => {
+          this.deprovisionUser()
+        }
+      })
     },
     clickProvision () {
       console.log('user clicked Reprovision button')

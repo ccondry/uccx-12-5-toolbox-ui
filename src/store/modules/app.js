@@ -77,7 +77,8 @@ const actions = {
   }) {
     message = message || `${options.method === 'POST' ? 'save' : 'get'} ${group} ${type}`
     console.log(`${message}...`)
-    dispatch('setLoading', {group, type, value: true})
+    const loadingOrWorking = !options.method || options.method === 'GET' ? 'setLoading' : 'setWorking'
+    dispatch(loadingOrWorking, {group, type, value: true})
     try {
       const data = await dispatch('fetch', {url, options})
       console.log(`${message} success:`, data)
@@ -93,7 +94,7 @@ const actions = {
         queue: false
       })
     } finally {
-      dispatch('setLoading', {group, type, value: false})
+      dispatch(loadingOrWorking, {group, type, value: false})
     }
   },
   async fetch ({dispatch, getters}, {url, options = {}}) {

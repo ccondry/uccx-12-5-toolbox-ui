@@ -55,6 +55,22 @@ const getters = {
 }
 
 const actions = {
+  async deprovisionUser ({dispatch, getters}, password) {
+    try {
+      await dispatch('fetchToState', {
+        group: 'user',
+        type: 'deprovision',
+        url: getters.endpoints.provision,
+        options: {
+          method: 'DELETE'
+        },
+        message: 'deprovision'
+      })
+      dispatch('getProvision')
+    } catch (e) {
+      console.log(e)
+    }
+  },
   resetPassword ({dispatch, getters}, password) {
     dispatch('fetchToState', {
       group: 'user',
@@ -69,19 +85,24 @@ const actions = {
       message: 'reset password'
     })
   },
-  provisionUser ({dispatch, getters}, password) {
-    dispatch('fetchToState', {
-      group: 'user',
-      type: 'provision',
-      url: getters.endpoints.provision,
-      options: {
-        method: 'POST',
-        body: {
-          password
-        }
-      },
-      message: 'provision user'
-    })
+  async provisionUser ({dispatch, getters}, password) {
+    try {
+      await dispatch('fetchToState', {
+        group: 'user',
+        type: 'provision',
+        url: getters.endpoints.provision,
+        options: {
+          method: 'POST',
+          body: {
+            password
+          }
+        },
+        message: 'provision user'
+      })
+      dispatch('getProvision')
+    } catch (e) {
+      console.log(e)
+    }
   },
   getProvision ({dispatch, getters}) {
     dispatch('fetchToState', {

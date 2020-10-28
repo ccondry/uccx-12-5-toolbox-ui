@@ -94,7 +94,8 @@ export default {
       'demoUserConfig'
     ]),
     isLoading () {
-      return this.loading.app.environment
+      return this.loading.app.environment ||
+      this.loading.user.provision
     }
   },
 
