@@ -27,7 +27,6 @@ const getters = {
       provision: urlBase + '/provision',
       password: urlBase + '/password',
       logout: authUrlBase + '/logout'
-      logout: authUrlBase + '/logout'
     }
   },
   defaultRestOptions: (state, getters) => {
