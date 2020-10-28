@@ -35,7 +35,7 @@ const webpackConfig = {
     // overlay: true,
     host: 'localhost',
     port: 5004,
-    // publicPath: '/',
+    openPage: 'uccx-12-5/',
     hot: true,
     // historyApiFallback: {
     //   index: '/'
