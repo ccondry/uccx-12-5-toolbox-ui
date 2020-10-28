@@ -27,6 +27,13 @@ const mutations = {
 
 const getters = {
   demoUserConfig: state => state.demoConfig,
+  isAdminSu: (state, getters) => {
+    try {
+      return getters.jwtUser.suJwt
+    } catch (e) {
+      return false
+    }
+  },
   isAdmin: (state, getters) => {
     try {
       return getters.jwtUser.admin
@@ -64,7 +71,7 @@ const actions = {
         options: {
           method: 'POST'
         },
-        message: 'deprovision'
+        message: 'logout'
       })
       // did we get a new JWT (from logging out of switch-user)?
       if (response.jwt) {
@@ -190,9 +197,6 @@ const actions = {
         rounded: true
       })
     }
-  },
-  logout ({dispatch}) {
-    dispatch('unsetJwt')
   },
   async checkJwt ({dispatch, getters}) {
     dispatch('setWorking', {group: 'user', type: 'login', value: true})

@@ -85,6 +85,7 @@ const actions = {
       if (mutation) {
         commit(mutation, data)
       }
+      return data
     } catch (e) {
       console.error(`${message} failed: ${e.message}`)
       Toast.open({

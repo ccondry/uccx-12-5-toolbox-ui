@@ -21,7 +21,7 @@
       <b-navbar-item tag="div">
         <div class="buttons">
           <b-button
-          v-if="isAdmin"
+          v-if="isAdminSu"
           type="is-info"
           rounded
           @click="clickLogout"
@@ -40,7 +40,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'isAdmin'
+      'isAdminSu'
     ])
   },
   
