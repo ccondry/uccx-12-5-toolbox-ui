@@ -19,7 +19,7 @@ const webpackConfig = {
   entry: './src/main.js',
   output: {
     path: path.resolve(process.cwd(), './dist/'),
-    publicPath: '/',
+    publicPath: '/uccx-12-5/',
     filename: isProd ? 'js/[name].[hash:7].js' : 'js/[name].js',
     chunkFilename: isProd ? 'js/[name].[hash:7].js' : 'js/[name].js',
   },
