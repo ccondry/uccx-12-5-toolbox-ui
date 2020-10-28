@@ -5,7 +5,7 @@
   style="background-color: rgba(0, 0, 0, 0)"
   >
     <template slot="start">
-      <b-navbar-item>
+      <b-field class="navbar-item">
         <b-button
         type="is-info"
         rounded
@@ -14,22 +14,20 @@
         >
           Toolbox Home
         </b-button>
-      </b-navbar-item>
+      </b-field>
     </template>
 
     <template slot="end">
-      <b-navbar-item tag="div">
-        <div class="buttons">
-          <b-button
-          v-if="isAdminSu"
-          type="is-info"
-          rounded
-          @click="clickLogout"
-          >
-            Log Out
-          </b-button>
-        </div>
-      </b-navbar-item>
+      <b-field class="navbar-item">
+        <b-button
+        v-if="isAdminSu"
+        type="is-info"
+        rounded
+        @click="clickLogout"
+        >
+          Log Out
+        </b-button>
+      </b-field>
     </template>
   </b-navbar>
 </template>
