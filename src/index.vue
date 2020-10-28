@@ -3,7 +3,7 @@
     <!-- top navbar -->
     <navbar />
     <!-- loading -->
-    <b-loading :active="isLoggedIn || !sessionId" :is-full-page="true" />
+    <b-loading :active="!sessionId" :is-full-page="true" />
     <!-- main -->
     <div
     v-if="isLoggedIn && sessionId"
