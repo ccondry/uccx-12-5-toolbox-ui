@@ -108,7 +108,7 @@ const actions = {
     // set JWT auth header by default
     options.headers['Authorization'] = options.headers['Authorization'] || 'Bearer ' + getters.jwt
     // set instant demo instance name
-    options.headers['instance'] = getters.instanceName
+    options.headers['Instance'] = getters.instanceName
     // stringify body if it is an object
     if (typeof options.body === 'object') {
       options.body = JSON.stringify(options.body)
