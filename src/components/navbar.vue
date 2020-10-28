@@ -24,6 +24,7 @@
           v-if="isAdmin"
           type="is-info"
           rounded
+          @click="clickLogout"
           >
             Log Out
           </b-button>
@@ -34,13 +35,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
     ...mapGetters([
       'isAdmin'
     ])
+  },
+  
+  methods: {
+    ...mapActions([
+      'logout'
+    ]),
+    clickLogout () {
+      this.logout()
+    }
   }
 }
 </script>

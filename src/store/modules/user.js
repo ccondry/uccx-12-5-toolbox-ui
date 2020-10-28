@@ -55,6 +55,29 @@ const getters = {
 }
 
 const actions = {
+  async logout ({dispatch, commit, getters}) {
+    try {
+      const response = await dispatch('fetchToState', {
+        group: 'user',
+        type: 'logout',
+        url: getters.endpoints.logout,
+        options: {
+          method: 'POST'
+        },
+        message: 'deprovision'
+      })
+      // did we get a new JWT (from logging out of switch-user)?
+      if (response.jwt) {
+        // save new JWT
+        dispatch('setJwt', response.jwt)
+      } else {
+        // make user log in again
+        dispatch('login')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  },
   async deprovisionUser ({dispatch, getters}, password) {
     try {
       await dispatch('fetchToState', {

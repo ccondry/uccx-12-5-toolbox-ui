@@ -66,6 +66,7 @@ export default {
       }, 1000)
     },
     clickDeprovision () {
+      console.log('clickDeprovision')
       this.$buefy.dialog.confirm({
         title: 'Delete Account',
         message: 'Are you sure you want to delete your account?',
@@ -73,6 +74,7 @@ export default {
         confirmText: 'Confirm',
         type: 'is-danger',
         onConfirm: () => {
+          console.log('click confirm Deprovision')
           this.deprovisionUser()
         }
       })
@@ -89,7 +91,7 @@ export default {
         rounded: true,
         confirmText: 'Submit',
         type: 'is-success',
-        onConfirm: password => {
+        onConfirm: (password) => {
           this.provisionUser(password)
           // not first provision
           // set timer for working estimate to 45 seconds

@@ -3,7 +3,7 @@
     <!-- top navbar -->
     <navbar />
     <!-- loading -->
-    <b-loading :active="!isLoggedIn || !sessionId" :is-full-page="true" />
+    <b-loading :active="isLoggedIn || !sessionId" :is-full-page="true" />
     <!-- main -->
     <div
     v-if="isLoggedIn && sessionId"
@@ -71,7 +71,8 @@ export default {
       'checkJwt',
       'getApiVersion',
       'getInstances',
-      'getVerticals'
+      'getVerticals',
+      'login'
     ]),
     clickAdmin () {
       this.$router.push({name: 'Admin'}).catch(e => {})

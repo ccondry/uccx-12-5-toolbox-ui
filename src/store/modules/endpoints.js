@@ -25,7 +25,9 @@ const getters = {
       demoConfig: urlBase + '/cumulus',
       demoBaseConfig: mmUrlBase + '/demo',
       provision: urlBase + '/provision',
-      password: urlBase + '/password'
+      password: urlBase + '/password',
+      logout: authUrlBase + '/logout'
+      logout: authUrlBase + '/logout'
     }
   },
   defaultRestOptions: (state, getters) => {
