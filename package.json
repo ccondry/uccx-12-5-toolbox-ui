@@ -8,8 +8,6 @@
   "scripts": {
     "build": "yarn dist",
     "build:test": "yarn dist:test",
-    "build:lib": "node tools/bin/build-lib.js",
-    "build:example": "node tools/bin/build-example.js",
     "clean": "rimraf dist",
     "dist2": "cross-env NODE_ENV=development PLAY_ENV=true webpack --config tools/webpack.demo.js",
     "dist": "cross-env NODE_ENV=production webpack --config tools/webpack.demo.js",
