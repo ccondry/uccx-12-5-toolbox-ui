@@ -3,11 +3,38 @@
     <!-- welcome -->
     <welcome />
 
+    <!-- Provision -->
+    <provision v-if="!isProvisioned" />
+
     <!-- VPN -->
-    <vpn />
+    <vpn v-if="isProvisioned" />
 
     <!-- Workstation -->
-    <workstation />
+    <workstation v-if="isProvisioned" />
+
+    <!-- Agents and Supervisors -->
+    <agents v-if="isProvisioned" />
+
+    <!-- Demo Website -->
+    <demo-website v-if="isProvisioned" />
+
+    <!-- Mobile App -->
+    <mobile-app v-if="isProvisioned" />
+
+    <!-- Whatsapp -->
+    <whatsapp v-if="isProvisioned" />
+
+    <!-- Facebook -->
+    <facebook v-if="isProvisioned" />
+
+    <!-- CUIC -->
+    <cuic v-if="isProvisioned" />
+
+    <!-- Reprovision -->
+    <reprovision v-if="isProvisioned" />
+
+    <!-- Copyright and version footer -->
+    <app-footer style="margin-bottom: 1rem;" />
 
     <!-- loading -->
     <b-loading :active="isLoading" />
@@ -20,12 +47,30 @@ import moment from 'moment'
 import Welcome from '../components/welcome'
 import Vpn from '../components/vpn'
 import Workstation from '../components/workstation'
+import Agents from '../components/agents'
+import DemoWebsite from '../components/demo-website'
+import MobileApp from '../components/mobile-app'
+import Whatsapp from '../components/whatsapp'
+import Facebook from '../components/facebook'
+import Cuic from '../components/cuic'
+import Reprovision from '../components/reprovision'
+import Provision from '../components/provision'
+import AppFooter from '../components/app-footer'
 
 export default {
   components: {
     Welcome,
     Vpn,
-    Workstation
+    Workstation,
+    Agents,
+    DemoWebsite,
+    MobileApp,
+    Whatsapp,
+    Facebook,
+    Cuic,
+    Reprovision,
+    Provision,
+    AppFooter
   },
 
   data () {
@@ -41,7 +86,12 @@ export default {
       'isLoggedIn',
       'jwtUser',
       'loading',
-      'working'
+      'working',
+      'instance',
+      'demoBaseConfig',
+      'isProvisioned',
+      'isLocked',
+      'demoUserConfig'
     ]),
     isLoading () {
       return this.loading.app.environment

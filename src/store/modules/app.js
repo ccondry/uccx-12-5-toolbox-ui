@@ -9,13 +9,15 @@ const state = {
     app: {},
     user: {},
     users: {},
-    ldap: {}
+    ldap: {},
+    dcloud: {}
   },
   working: {
     app: {},
     user: {},
     users: {},
-    ldap: {}
+    ldap: {},
+    dcloud: {}
   },
   isProduction: process.env.NODE_ENV === 'production',
   demoEnvironment: {},
@@ -65,6 +67,35 @@ const mutations = {
 }
 
 const actions = {
+  async fetchToState ({commit, dispatch}, {
+    group,
+    type,
+    url,
+    options = {},
+    mutation,
+    message
+  }) {
+    message = message || `${options.method === 'POST' ? 'save' : 'get'} ${group} ${type}`
+    console.log(`${message}...`)
+    dispatch('setLoading', {group, type, value: true})
+    try {
+      const data = await dispatch('fetch', {url, options})
+      console.log(`${message} success:`, data)
+      if (mutation) {
+        commit(mutation, data)
+      }
+    } catch (e) {
+      console.error(`${message} failed: ${e.message}`)
+      Toast.open({
+        message: `Failed to ${message}: ${e.message}`,
+        type: 'is-danger',
+        duration: 6 * 1000,
+        queue: false
+      })
+    } finally {
+      dispatch('setLoading', {group, type, value: false})
+    }
+  },
   async fetch ({dispatch, getters}, {url, options = {}}) {
     if (!url) {
       throw Error('url is a required parameter for fetch')
@@ -143,8 +174,6 @@ const actions = {
       const data = await dispatch('fetch', {url})
       console.log('get', group, type, 'success', data)
       commit(types.SET_API_VERSION, data)
-      // get dCloud session information from mm
-      dispatch('getSession')
     } catch (e) {
       console.log(group, type, 'failed:', e.message)
       Toast.open({

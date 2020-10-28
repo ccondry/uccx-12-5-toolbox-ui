@@ -12,16 +12,21 @@ function parseJwt (token) {
 }
 
 const state = {
-  jwt: null
+  jwt: null,
+  demoConfig: {}
 }
 
 const mutations = {
   [types.SET_JWT] (state, data) {
     state.jwt = data
+  },
+  [types.SET_PROVISION] (state, data) {
+    state.demoConfig = data
   }
 }
 
 const getters = {
+  demoUserConfig: state => state.demoConfig,
   isAdmin: (state, getters) => {
     try {
       return getters.jwtUser.admin
@@ -41,12 +46,64 @@ const getters = {
     try {
       return parseJwt(state.jwt)
     } catch (e) {
-      return null
+      return {}
     }
+  },
+  isProvisioned: (state, getters) => {
+    return Object.keys(getters.demoUserConfig).length > 0
   }
 }
 
 const actions = {
+  resetPassword ({dispatch, getters}, password) {
+    dispatch('fetchToState', {
+      group: 'user',
+      type: 'password',
+      url: getters.endpoints.password,
+      options: {
+        method: 'POST',
+        body: {
+          password
+        }
+      },
+      message: 'reset password'
+    })
+  },
+  provisionUser ({dispatch, getters}, password) {
+    dispatch('fetchToState', {
+      group: 'user',
+      type: 'provision',
+      url: getters.endpoints.provision,
+      options: {
+        method: 'POST',
+        body: {
+          password
+        }
+      },
+      message: 'provision user'
+    })
+  },
+  getProvision ({dispatch, getters}) {
+    dispatch('fetchToState', {
+      group: 'user',
+      type: 'provision',
+      url: getters.endpoints.provision,
+      message: 'get provision information',
+      mutation: types.SET_PROVISION
+    })
+  },
+  saveDemoUserConfig ({dispatch, getters}, body) {
+    dispatch('fetchToState', {
+      group: 'user',
+      type: 'demoConfig',
+      url: getters.endpoints.demoConfig,
+      options: {
+        method: 'POST',
+        body
+      },
+      message: 'save demo configuration'
+    })
+  },
   setJwt ({commit, dispatch}, jwt) {
     try {
       // test parse JWT to user JSON
@@ -55,9 +112,8 @@ const actions = {
       commit(types.SET_JWT, jwt)
       // put JWT in localStorage
       window.localStorage.setItem('jwt', jwt)
-      // get environment info
-      // dispatch('getDemoEnvironment')
-
+      // get provision info for this user
+      dispatch('getProvision')
     } catch (e) {
       // parseJwt failed - delete this invalid JWT
       dispatch('unsetJwt')

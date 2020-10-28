@@ -1,23 +1,14 @@
 <template>
-  <div class="is-parent">
-    <!-- logged in -->
-    <article
-    class="tile is-child is-white flex-container box"
-    > 
-      <p class="title">
-        Welcome {{ jwtUser.firstName }}!
-      </p>
-
-      <div class="content">
-        <p>
-          Welcome to the Cisco Unified Contact Center express 12.5v1 Demo on
-          dCloud.
-        </p>
-        <p>
-          Join our Webex Teams support room to get help, ask questions, and
-          suggest new features:
-        </p>
-      </div>
+  <panel :title="`Welcome ${jwtUser.firstName}!`" aria-id="welcome">
+    <p>
+      Welcome to the Cisco Unified Contact Center Express 12.5v1 Demo on
+      dCloud.
+    </p>
+    <p>
+      Join our Webex Teams support room to get help, ask questions, and
+      suggest new features:
+    </p>
+    <div class="buttons" style="justify-content: space-around;">
       <b-field>
         <b-button
         type="is-primary"
@@ -27,8 +18,8 @@
           Join Support Room
         </b-button>
       </b-field>
-    </article>
-  </div>
+    </div>
+  </panel>
 </template>
 
 <script>

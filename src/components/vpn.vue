@@ -1,51 +1,37 @@
 <template>
-  <div class="is-parent">
-    <!-- logged in -->
-    <article class="tile is-child is-white flex-container box">
-      <p class="title">
-        VPN
-      </p>
-
-      <div class="content">
-        <p>
-          Connect your laptop to the demo session using AnyConnect:
-        </p>
-        <ul>
-          <li>
-            Address:
-            <strong>{{ vpnAddress }}</strong>
-            <a @click="clickCopy(vpnAddress, 'VPN Address')">
-              <b-icon icon="layers" />
-            </a>
-          </li>
-          <li>
-            Username:
-            <strong>{{ jwtUser.username }}</strong>
-            <a @click="clickCopy(jwtUser.username, 'VPN Username')">
-              <b-icon icon="layers" />
-            </a>
-          </li>
-          <li>
-            Password:
-            <strong>Your chosen demo password</strong>
-            <b-button
-            style="margin-left: 1rem;"
-            size="is-small"
-            type="is-primary"
-            rounded
-            @click="clickResetPassword"
-            >
-              Reset Password
-            </b-button>
-          </li>
-        </ul>
-        <small>
-          Note: If you have any issues resolving DNS in the demo while using
-          Windows, try rebooting Windows to resolve this issue.
-        </small>
-      </div>
-    </article>
-  </div>
+  <panel title="VPN" aria-id="vpn">
+    <p>
+      Connect your laptop to the demo session using AnyConnect:
+    </p>
+    <ul>
+      <li>
+        Address:
+        <strong>{{ vpnAddress }}</strong>
+        <copy :value="vpnAddress" name="VPN Address" />
+      </li>
+      <li>
+        Username:
+        <strong>{{ jwtUser.username }}</strong>
+        <copy :value="jwtUser.username" name="VPN Username" />
+      </li>
+      <li>
+        Password:
+        <strong>Your chosen demo VPN password</strong>
+        <b-button
+        style="margin-left: 1rem;"
+        type="is-primary"
+        rounded
+        @click="clickResetPassword"
+        >
+          Reset Password
+        </b-button>
+      </li>
+    </ul>
+    <p>
+      Note: If you have any issues resolving DNS in the demo while using
+      Windows, try rebooting Windows to resolve this issue.
+    </p>
+  </panel>
 </template>
 
 <script>
@@ -66,12 +52,17 @@ export default {
     ]),
     clickResetPassword () {
       this.$buefy.dialog.prompt({
-        title: 'Reset Password',
-        message: `Enter your new password:`,
+        title: 'Reset Demo VPN Password',
+        message: `Enter your new demo VPN password:`,
         type: 'is-success',
         confirmText: 'Submit',
+        rounded: true,
+        inputAttrs: {
+          type: 'password'
+        },
         onConfirm: (password) => {
           console.log('changing password...')
+          this.resetPassword(password)
         }
       })
     },

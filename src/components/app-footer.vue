@@ -1,21 +1,18 @@
 <template>
-  <div class="is-parent">
-    <!-- logged in -->
-    <article class="tile is-child is-white box">
-      <div class="content" style="display: flex; flex-direction: column; align-items: center;">
-        <small> 
-          UI Version {{ uiVersion }}
-        </small>
-        <small>
-          API Version {{ apiVersion }}
-        </small>
-        <small>
-          © 2020 Cisco and/or its affiliates. All rights reserved.
-        </small>
-        <cisco-logo style="width: 4rem; height: 4rem;" />
-      </div>
-    </article>
-  </div>
+  <panel aria-id="version-copyright">
+    <div style="display: flex; flex-direction: column; align-items: center; padding-top: 1rem;">
+      <cisco-logo style="width: 4rem; height: 4rem;" />
+      <small> 
+        UI Version {{ uiVersion }}
+      </small>
+      <small>
+        API Version {{ apiVersion }}
+      </small>
+      <small>
+        © 2020 Cisco and/or its affiliates. All rights reserved.
+      </small>
+    </div>
+  </panel>
 </template>
 
 <script>

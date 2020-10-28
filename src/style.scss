@@ -70,3 +70,18 @@ span.tag {
 //   border-left: 1px solid rgb(204, 204, 204);
 //   border-right: 1px solid rgb(204, 204, 204);
 // }
+// .panel-block {
+//   border-bottom: 1px solid rgb(204, 204, 204);
+//   border-left: 1px solid rgb(204, 204, 204);
+//   border-right: 1px solid rgb(204, 204, 204);
+// }
+
+// add thin grey border around collapse panels
+// and increase their box shadow
+div.collapse.panel {
+  border: 1px solid rgb(204, 204, 204);
+}
+
+.box {
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
+}

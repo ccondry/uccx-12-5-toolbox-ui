@@ -7,10 +7,5 @@ const routes = [{
   name: 'Home',
   path: '/',
   component: () => import(`../views/home.vue`)
-}, {
-  // the admin panel
-  name: 'Admin',
-  path: '/admin',
-  component: () => import(`../views/admin.vue`)
 }]
 export default routes

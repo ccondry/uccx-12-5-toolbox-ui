@@ -1,13 +1,28 @@
 const getters = {
   endpoints: (state, getters) => {
-    const urlBase = getters.isProduction ? '/api/v1/uccx-12-5' : 'http://localhost:4004/api/v1/uccx-12-5'
-    const authUrlBase = getters.isProduction ? '/api/v1/auth' : 'http://localhost:3032/api/v1/auth'
+    let urlBase
+    let authUrlBase
+    const mmUrlBase = 'https://mm.cxdemo.net/api/v1'
+
+    if (getters.isProduction) {
+      urlBase = '/api/v1/uccx-12-5'
+      authUrlBase = '/api/v1/auth'
+    } else {
+      urlBase = 'http://localhost:4004/api/v1/uccx-12-5'
+      authUrlBase = 'http://localhost:3032/api/v1/auth'
+    }
+
     return {
       webex: {
         joinSupportRoom: authUrlBase + '/resource/joinUccxSupportRoom',
       },
       version: urlBase + '/version',
-      session: urlBase + '/session'
+      instance: authUrlBase + '/instance',
+      vertical: mmUrlBase + '/verticals',
+      demoConfig: urlBase + '/cumulus',
+      demoBaseConfig: mmUrlBase + '/demo',
+      provision: urlBase + '/provision',
+      password: urlBase + '/password'
     }
   },
   defaultRestOptions: (state, getters) => {

@@ -2,29 +2,19 @@
   <b-navbar
   :transparent="true"
   :fixed-top="true"
+  style="background-color: rgba(0, 0, 0, 0)"
   >
-    <template slot="brand">
-      <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <cisco-logo
-        style="color: blue; width: 3rem; height: 3rem;"
-        />
-      </b-navbar-item>
-    </template>
     <template slot="start">
-      <b-navbar-item href="#">
-        Home
+      <b-navbar-item>
+        <b-button
+        type="is-info"
+        rounded
+        tag="a"
+        href="/"
+        >
+          Toolbox Home
+        </b-button>
       </b-navbar-item>
-      <b-navbar-item href="#">
-        Documentation
-      </b-navbar-item>
-      <b-navbar-dropdown label="Info">
-        <b-navbar-item href="#">
-          About
-        </b-navbar-item>
-        <b-navbar-item href="#">
-          Contact
-        </b-navbar-item>
-      </b-navbar-dropdown>
     </template>
 
     <template slot="end">
@@ -44,17 +34,13 @@
 </template>
 
 <script>
-import CiscoLogo from './cisco-logo'
+import { mapGetters } from 'vuex'
 
 export default {
-  components: {
-    CiscoLogo
-  },
-
   computed: {
-    isAdmin () {
-      return true
-    }
+    ...mapGetters([
+      'isAdmin'
+    ])
   }
 }
 </script>

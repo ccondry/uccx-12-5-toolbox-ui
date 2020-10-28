@@ -2,24 +2,25 @@
   <div>
     <!-- top navbar -->
     <navbar />
+    <!-- loading -->
+    <b-loading :active="!isLoggedIn || !sessionId" :is-full-page="true" />
+    <!-- main -->
     <div
+    v-if="isLoggedIn && sessionId"
     id="main-container"
     class="container is-fluid is-marginless app-content"
     >
-      <section class="main">
-        <!-- vue-router container -->
-        <transition
-        mode="out-in"
-        enter-active-class="fadeIn"
-        leave-active-class="fadeOut"
-        appear
-        >
-          <keep-alive>
-            <router-view />
-          </keep-alive>
-        </transition>
-        <app-footer />
-      </section>
+      <!-- vue-router container -->
+      <transition
+      mode="out-in"
+      enter-active-class="fadeIn"
+      leave-active-class="fadeOut"
+      appear
+      >
+        <keep-alive>
+          <router-view />
+        </keep-alive>
+      </transition>
     </div>
   </div>
 </template>
@@ -27,21 +28,18 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import Navbar from './components/navbar'
-import AppFooter from './components/app-footer'
-// import Welcome from './components/welcome'
 
 export default {
   components: {
-    Navbar,
-    AppFooter
-    // Welcome
+    Navbar
   },
 
   computed: {
     ...mapGetters([
       'isLoggedIn',
       'isAdmin',
-      'jwtUser'
+      'jwtUser',
+      'sessionId'
     ])
   },
 
@@ -62,12 +60,18 @@ export default {
     this.checkJwt()
     // get the REST API version
     this.getApiVersion()
+    // get instances
+    this.getInstances()
+    // get verticals
+    this.getVerticals()
   },
 
   methods: {
     ...mapActions([
       'checkJwt',
-      'getApiVersion'
+      'getApiVersion',
+      'getInstances',
+      'getVerticals'
     ]),
     clickAdmin () {
       this.$router.push({name: 'Admin'}).catch(e => {})
@@ -94,8 +98,6 @@ html, body {
 #main-container {
   height: 100vh;
   padding-top: 1rem;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 // each route content container class - centered
@@ -112,12 +114,9 @@ section.main {
 }
 
 section.main > div {
-  padding-bottom: 1rem;
+  // padding-bottom: 1rem;
 }
 
 // give content panels a grey border and darker box shadow
-article.box {
-  box-shadow: 0 2rem 1rem rgba(0,0,0,.2);
-  border: 1px solid rgb(204, 204, 204);
-}
+
 </style>
