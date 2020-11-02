@@ -8,11 +8,12 @@ const getters = {
       urlBase = '/api/v1/uccx-12-5'
       authUrlBase = '/api/v1/auth'
     } else {
-      // direct to uccx-12-5-toolbox-api
-      urlBase = 'http://localhost:4004/api/v1/uccx-12-5'
-      // proxy through toolbox-proxy
-      // urlBase = 'http://localhost:3053/api/v1/uccx-12-5'
+      // auth API
       authUrlBase = 'http://localhost:3032/api/v1/auth'
+      // direct to uccx-12-5-toolbox-api
+      // urlBase = 'http://localhost:4004/api/v1/uccx-12-5'
+      // proxy through toolbox-proxy
+      urlBase = 'http://localhost:3053/api/v1/uccx-12-5'
     }
 
     return {
