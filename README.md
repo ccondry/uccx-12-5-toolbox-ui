@@ -1,5 +1,5 @@
 # uccx-12-5-toolbox-ui
-The dCloud GoCMS web portal UI project. It is built on Momentum-UI and
+The dCloud UCCX 12.5 Instant Demo Toolbox web portal UI project. It is built on
 Vue.js 2.6 (including vue-router and vuex), using Webpack 4.
 
 ## Development
