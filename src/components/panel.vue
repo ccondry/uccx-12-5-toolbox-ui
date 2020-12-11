@@ -13,12 +13,17 @@
     >
       <strong>{{ title }}</strong>
     </div>
-    <div
+    <!-- <div
     class="panel-block"
     style="background-color: white;"
     :style="!title.length ? 'border-radius: 6px;' : ''"
     >
       <slot />
+    </div> -->
+    <div class="panel-block box">
+      <div class="content">
+        <slot /> 
+      </div>
     </div>
   </b-collapse>
 </template>
