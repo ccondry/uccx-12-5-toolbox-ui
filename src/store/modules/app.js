@@ -156,7 +156,6 @@ const actions = {
         error.status = response.status
         error.statusText = response.statusText
         error.text = m
-        // throw error
         if (typeof onError === 'function') {
           onError(error)
         }

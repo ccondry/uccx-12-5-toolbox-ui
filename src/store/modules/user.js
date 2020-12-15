@@ -1,5 +1,6 @@
 import {
   DialogProgrammatic as Dialog,
+  ToastProgrammatic as Toast
 } from 'buefy/src'
 
 import * as types from '../mutation-types'
@@ -116,22 +117,37 @@ const actions = {
     })
   },
   async provisionUser ({dispatch, getters}, password) {
-    try {
-      await dispatch('fetch', {
-        group: 'user',
-        type: 'provision',
-        url: getters.endpoints.provision,
-        options: {
-          method: 'POST',
-          body: {
-            password
-          }
-        },
-        message: 'provision user'
+    console.log('user.provisionUser action...')
+    const response = await dispatch('fetch', {
+      group: 'user',
+      type: 'provision',
+      url: getters.endpoints.provision,
+      options: {
+        method: 'POST',
+        body: {
+          password
+        }
+      },
+      message: 'provision user'
+    })
+    console.log(response)
+    if (response instanceof Error) {
+      // error
+      Toast.open({
+        message: `Failed to provision your account: ${response.message}`,
+        type: 'is-danger',
+        duration: 12 * 1000,
+        queue: false
+      })
+    } else {
+      // success
+      Toast.open({
+        message: `Successfully provisioned your user account.`,
+        type: 'is-danger',
+        duration: 6 * 1000,
+        queue: true
       })
       dispatch('getProvision')
-    } catch (e) {
-      console.log(e)
     }
   },
   getProvision ({dispatch, getters}) {
