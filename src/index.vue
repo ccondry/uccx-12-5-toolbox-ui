@@ -3,7 +3,7 @@
     <!-- top navbar -->
     <navbar />
     <!-- loading -->
-    <b-loading :active="!sessionId" :is-full-page="true" />
+    <b-loading :active="!sessionId && isProduction" :is-full-page="true" />
     <!-- main -->
     <div
     v-if="isLoggedIn && sessionId"
@@ -39,7 +39,8 @@ export default {
       'isLoggedIn',
       'isAdmin',
       'jwtUser',
-      'sessionId'
+      'sessionId',
+      'isProduction'
     ])
   },
 
