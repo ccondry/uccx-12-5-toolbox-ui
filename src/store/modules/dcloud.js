@@ -114,7 +114,7 @@ const actions = {
       options: {
         query: {
           demo: 'uccx',
-          version: '12.5v1',
+          version: '12.5v2',
           instant: true
         }
       },
@@ -147,7 +147,7 @@ const actions = {
       const options = {
         query: {
           demo: 'uccx',
-          version: '12.5v1',
+          version: '12.5v2',
           datacenter: getters.datacenter
         }
       }

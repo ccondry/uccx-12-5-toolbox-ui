@@ -1,7 +1,7 @@
 <template>
   <panel :title="`Welcome ${jwtUser.firstName}!`" aria-id="welcome">
     <p>
-      Welcome to the Cisco Unified Contact Center Express 12.5v1 Demo on
+      Welcome to the Cisco Unified Contact Center Express 12.5v2 Instant Demo on
       dCloud.
     </p>
     <p>
