@@ -48,6 +48,8 @@ export default {
     isLoggedIn (val, oldVal) {
       if (val && !oldVal) {
         // user just logged in
+        // get verticals
+        this.getVerticals()
       } else if (!val && oldVal) {
         // user just logged out. make them log in again.
         this.login()
@@ -63,8 +65,6 @@ export default {
     this.getApiVersion()
     // get instances
     this.getInstances()
-    // get verticals
-    this.getVerticals()
   },
 
   methods: {
