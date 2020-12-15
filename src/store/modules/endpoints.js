@@ -9,11 +9,12 @@ const getters = {
       authUrlBase = '/api/v1/auth'
     } else {
       // auth API
-      authUrlBase = 'http://localhost:3032/api/v1/auth'
+      // authUrlBase = 'http://localhost:3032/api/v1/auth'
+      authUrlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/auth'
       // direct to uccx-12-5-toolbox-api
-      // urlBase = 'http://localhost:4004/api/v1/uccx-12-5'
+      urlBase = 'http://localhost:4004/api/v1/uccx-12-5'
       // proxy through toolbox-proxy
-      urlBase = 'http://localhost:3053/api/v1/uccx-12-5'
+      // urlBase = 'http://localhost:3053/api/v1/uccx-12-5'
     }
 
     return {
