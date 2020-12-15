@@ -64,7 +64,7 @@ const getters = {
 const actions = {
   async logout ({dispatch, commit, getters}) {
     try {
-      const response = await dispatch('fetchToState', {
+      const response = await dispatch('fetch', {
         group: 'user',
         type: 'logout',
         url: getters.endpoints.logout,
@@ -87,7 +87,7 @@ const actions = {
   },
   async deprovisionUser ({dispatch, getters}, password) {
     try {
-      await dispatch('fetchToState', {
+      await dispatch('fetch', {
         group: 'user',
         type: 'deprovision',
         url: getters.endpoints.provision,
@@ -102,7 +102,7 @@ const actions = {
     }
   },
   resetPassword ({dispatch, getters}, password) {
-    dispatch('fetchToState', {
+    dispatch('fetch', {
       group: 'user',
       type: 'password',
       url: getters.endpoints.password,
@@ -117,7 +117,7 @@ const actions = {
   },
   async provisionUser ({dispatch, getters}, password) {
     try {
-      await dispatch('fetchToState', {
+      await dispatch('fetch', {
         group: 'user',
         type: 'provision',
         url: getters.endpoints.provision,
@@ -135,7 +135,7 @@ const actions = {
     }
   },
   getProvision ({dispatch, getters}) {
-    dispatch('fetchToState', {
+    dispatch('fetch', {
       group: 'user',
       type: 'provision',
       url: getters.endpoints.provision,
@@ -144,7 +144,7 @@ const actions = {
     })
   },
   saveDemoUserConfig ({dispatch, getters}, body) {
-    dispatch('fetchToState', {
+    dispatch('fetch', {
       group: 'user',
       type: 'demoConfig',
       url: getters.endpoints.demoConfig,

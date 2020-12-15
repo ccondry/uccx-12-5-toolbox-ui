@@ -107,7 +107,7 @@ const getters = {
 
 const actions = {
   getDemoBaseConfig ({dispatch, getters}) {
-    dispatch('fetchToState', {
+    dispatch('fetch', {
       group: 'dcloud',
       type: 'demoBaseConfig',
       url: getters.endpoints.demoBaseConfig,
@@ -123,13 +123,13 @@ const actions = {
     })
   },
   getVerticals ({dispatch, getters}) {
-    dispatch('fetchToState', {
+    dispatch('fetch', {
       group: 'dcloud',
       type: 'verticals',
       url: getters.endpoints.vertical,
       options: {
         query: {
-          all: true,
+          owner: getters.jwtUser.username,
           summary: true
         }
       },
