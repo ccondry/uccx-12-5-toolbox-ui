@@ -143,7 +143,7 @@ const actions = {
       // success
       Toast.open({
         message: `Successfully provisioned your user account.`,
-        type: 'is-danger',
+        type: 'is-success',
         duration: 6 * 1000,
         queue: true
       })
