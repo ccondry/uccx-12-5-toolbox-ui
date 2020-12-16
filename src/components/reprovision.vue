@@ -16,15 +16,14 @@
       >
         {{ buttonText }}
       </b-button>
-
-      <b-button
+      <!-- <b-button
       :disabled="working.user.provision"
       type="is-danger"
       rounded
       @click.prevent="clickDeprovision"
       >
         Delete Account
-      </b-button>
+      </b-button> -->
     </div>
   </panel>
 </template>
@@ -65,20 +64,20 @@ export default {
         this.timerNow = new Date().getTime()
       }, 1000)
     },
-    clickDeprovision () {
-      console.log('clickDeprovision')
-      this.$buefy.dialog.confirm({
-        title: 'Delete Account',
-        message: 'Are you sure you want to delete your account?',
-        rounded: true,
-        confirmText: 'Confirm',
-        type: 'is-danger',
-        onConfirm: () => {
-          console.log('click confirm Deprovision')
-          this.deprovisionUser()
-        }
-      })
-    },
+    // clickDeprovision () {
+    //   console.log('clickDeprovision')
+    //   this.$buefy.dialog.confirm({
+    //     title: 'Delete Account',
+    //     message: 'Are you sure you want to delete your account?',
+    //     rounded: true,
+    //     confirmText: 'Confirm',
+    //     type: 'is-danger',
+    //     onConfirm: () => {
+    //       console.log('click confirm Deprovision')
+    //       this.deprovisionUser()
+    //     }
+    //   })
+    // },
     clickProvision () {
       console.log('user clicked Reprovision button')
       this.$buefy.dialog.prompt({

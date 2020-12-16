@@ -86,22 +86,6 @@ const actions = {
       console.log(e)
     }
   },
-  async deprovisionUser ({dispatch, getters}, password) {
-    try {
-      await dispatch('fetch', {
-        group: 'user',
-        type: 'deprovision',
-        url: getters.endpoints.provision,
-        options: {
-          method: 'DELETE'
-        },
-        message: 'deprovision'
-      })
-      dispatch('getProvision')
-    } catch (e) {
-      console.log(e)
-    }
-  },
   resetPassword ({dispatch, getters}, password) {
     dispatch('fetch', {
       group: 'user',
