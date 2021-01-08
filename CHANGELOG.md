@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.1.8
+
+### Features
+* **Admin:** Add Admin button for admin users to go to the management page
+
+
 # 2021.1.7
 
 ### Bug Fixes
