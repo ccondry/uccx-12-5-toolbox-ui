@@ -20,21 +20,25 @@ const state = {
     dcloud: {}
   },
   isProduction: process.env.NODE_ENV === 'production',
-  demoEnvironment: {},
   uiVersion: version,
-  apiVersion: 'Loading...'
+  apiVersion: 'Loading...',
+  fatalErrors: []
 }
 
 const getters = {
+  fatalErrors: state => state.fatalErrors,
   isProduction: state => state.isProduction,
   loading: state => state.loading,
   working: state => state.working,
-  demoEnvironment: state => state.demoEnvironment,
   uiVersion: state => state.uiVersion,
   apiVersion: state => state.apiVersion
 }
 
 const mutations = {
+  [types.ADD_FATAL_ERROR] (state, data) {
+    // add fatal error to the list
+    state.fatalErrors.push(data)
+  },
   [types.SET_WORKING] (state, data) {
     // if state container for this group is not existing, create it
     if (!state.working[data.group]) {

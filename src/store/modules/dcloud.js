@@ -59,6 +59,7 @@ const getters = {
     } else {
       // development
       return 'RTP'
+      // return 'LON'
     }
   },
   brandDemoLink (state, getters) {
@@ -123,30 +124,54 @@ const actions = {
       message: 'save demo user configuration'
     })
   },
-  getDemoUserConfig ({dispatch, getters}) {
-    dispatch('fetch', {
+  async getDemoUserConfig ({commit, dispatch, getters}) {
+    const response = await dispatch('fetch', {
       group: 'dcloud',
       type: 'demoUserConfig',
       url: getters.endpoints.demoUserConfig,
       mutation: types.SET_DEMO_USER_CONFIG,
       message: 'get demo user configuration'
     })
+    if (response instanceof Error) {
+      // error
+      Toast.open({
+        message: `Failed to get your vertical selection: ${response.message}`,
+        type: 'is-danger',
+        duration: 12 * 1000,
+        queue: false
+      })
+      if (response.status === 404) {
+        // this is a fatal error, so put it in state to be displayed
+        commit(types.ADD_FATAL_ERROR, 'Could not connect to instant demo session.')
+      }
+    } else {
+      // success
+    }
   },
-  getDemoBaseConfig ({dispatch, getters}) {
-    dispatch('fetch', {
+  async getDemoBaseConfig ({dispatch, getters}) {
+    const query = {
+      demo: 'uccx',
+      version: '12.5v2',
+      instant: true
+    }
+    const response = await dispatch('fetch', {
       group: 'dcloud',
       type: 'demoBaseConfig',
       url: getters.endpoints.demoBaseConfig,
       options: {
-        query: {
-          demo: 'uccx',
-          version: '12.5v2',
-          instant: true
-        }
+        query
       },
       mutation: types.SET_DEMO_BASE_CONFIG,
       message: 'get demo base config'
     })
+    if (response instanceof Error && response.status === 404) {
+      // this is a fatal error, so put it in state to be displayed
+      commit(types.ADD_FATAL_ERROR, 'Could not connect to the Demo Toolbox service.')
+    } else if (Array.isArray(response) && response.length === 0) {
+      // empty results
+      // this is a fatal error, so put it in state to be displayed
+      commit(types.ADD_FATAL_ERROR, `Could not find any matching instant demo definitions for ${query.demo} ${query.version}.`)
+    }
   },
   getVerticals ({dispatch, getters}) {
     dispatch('fetch', {
@@ -164,35 +189,35 @@ const actions = {
     })
   },
   async getInstances ({getters, commit, dispatch}) {
-    const group = 'dcloud'
-    const type = 'instances'
-    console.log(`${group} ${type}...`)
-    dispatch('setLoading', {group, type, value: true})
-    try {
-      const url = getters.endpoints.instance
-      const options = {
+    const response = await dispatch('fetch', {
+      group: 'dcloud',
+      type: 'instances',
+      url: getters.endpoints.instance,
+      options: {
         query: {
           demo: 'uccx',
           version: '12.5v2',
           datacenter: getters.datacenter
         }
-      }
-      const data = await dispatch('fetch', {url, options})
-      console.log('get', group, type, 'success', data)
-      commit(types.SET_DCLOUD_INSTANCES, data)
+      },
+      mutation: types.SET_DCLOUD_INSTANCES,
+      message: 'get instant demo instances list'
+    })
+    if (response instanceof Error && response.status === 404) {
+      // 404 response
+      // this is a fatal error, so put it in state to be displayed
+      commit(types.ADD_FATAL_ERROR, 'Could not connect to the Demo Toolbox service.')
+    } else if (Array.isArray(response) && response.length === 0) {
+      // 200 response with empty results
+      // this is a fatal error, so put it in state to be displayed
+      commit(types.ADD_FATAL_ERROR, `Could not find any active "UCCX 12.5v2" instant demo sessions in the "${getters.datacenter}" datacenter.`)
+    } else {
+      // success
       // get demo base config now
       dispatch('getDemoBaseConfig')
-    } catch (e) {
-      console.error(`get ${group} ${type} failed: ${e.message}`)
-      Toast.open({
-        message: `Failed to get dCloud instances: ${e.message}`,
-        type: 'is-danger',
-        duration: 6 * 1000,
-        queue: false
-      })
-    } finally {
-      dispatch('setLoading', {group, type, value: false})
     }
+
+    
   }
 }
 

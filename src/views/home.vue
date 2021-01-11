@@ -3,8 +3,11 @@
     <!-- welcome -->
     <welcome />
 
+    <!-- Fatal Errors -->
+    <errors v-if="fatalErrors.length" />
+
     <!-- Provision -->
-    <provision v-if="!isProvisioned" />
+    <provision v-if="!isProvisioned && !fatalErrors.length" />
 
     <!-- VPN -->
     <vpn v-if="isProvisioned" />
@@ -56,6 +59,7 @@ import Cuic from '../components/cuic'
 import Reprovision from '../components/reprovision'
 import Provision from '../components/provision'
 import AppFooter from '../components/app-footer'
+import Errors from '../components/errors'
 
 export default {
   components: {
@@ -70,7 +74,8 @@ export default {
     Cuic,
     Reprovision,
     Provision,
-    AppFooter
+    AppFooter,
+    Errors
   },
 
   data () {
@@ -89,7 +94,8 @@ export default {
       'working',
       'instance',
       'isProvisioned',
-      'isLocked'
+      'isLocked',
+      'fatalErrors'
     ]),
     isLoading () {
       return this.loading.app.environment ||

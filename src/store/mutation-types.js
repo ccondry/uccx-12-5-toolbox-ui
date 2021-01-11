@@ -20,3 +20,6 @@ export const SET_DEMO_USER_CONFIG = 'SET_DEMO_USER_CONFIG'
 export const SET_VERTICALS = 'SET_VERTICALS'
 // user provision info
 export const SET_PROVISION = 'SET_PROVISION'
+
+// errors that stop the page from working at all
+export const ADD_FATAL_ERROR = 'ADD_FATAL_ERROR'

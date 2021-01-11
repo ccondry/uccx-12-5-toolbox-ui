@@ -152,8 +152,6 @@ const actions = {
       })
     } else {
       // success
-      // get user's demo configuration, like vertical selected
-      dispatch('getDemoUserConfig')
     }
   },
   setJwt ({commit, dispatch}, jwt) {
@@ -166,6 +164,8 @@ const actions = {
       window.localStorage.setItem('jwt', jwt)
       // get provision info for this user
       dispatch('getProvision')
+      // and get user's vertical selection
+      dispatch('getDemoUserConfig')
     } catch (e) {
       // parseJwt failed - delete this invalid JWT
       dispatch('unsetJwt')

@@ -3,10 +3,10 @@
     <!-- top navbar -->
     <navbar />
     <!-- loading -->
-    <b-loading :active="!sessionId && isProduction" :is-full-page="true" />
+    <b-loading :active="isLoading" :is-full-page="true" />
     <!-- main -->
     <div
-    v-if="isLoggedIn && sessionId"
+    v-if="isLoggedIn"
     id="main-container"
     class="container is-fluid is-marginless app-content"
     >
@@ -41,7 +41,10 @@ export default {
       'jwtUser',
       'sessionId',
       'isProduction'
-    ])
+    ]),
+    isLoading () {
+      return !this.isLoggedIn && this.isProduction
+    }
   },
 
   watch: {
