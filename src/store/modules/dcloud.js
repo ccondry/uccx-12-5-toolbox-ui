@@ -8,6 +8,7 @@ const state = {
   instanceName: '',
   verticals: [],
   demoBaseConfig: {},
+  demoUserConfig: {},
   datacenterNames: {
     'RTP': 'US East',
     'SJC': 'US West',
@@ -31,6 +32,9 @@ const mutations = {
   },
   [types.SET_DEMO_BASE_CONFIG] (state, data) {
     state.demoBaseConfig = data[0]
+  },
+  [types.SET_DEMO_USER_CONFIG] (state, data) {
+    state.demoUserConfig = data
   }
 }
 
@@ -86,6 +90,7 @@ const getters = {
     }
   },
   demoBaseConfig: state => state.demoBaseConfig,
+  demoUserConfig: state => state.demoUserConfig,
   vpnAddress: (state, getters) => {
     const address = getters.demoBaseConfig.vpn
     if (!address) {
@@ -106,6 +111,27 @@ const getters = {
 }
 
 const actions = {
+  saveDemoUserConfig ({dispatch, getters}, body) {
+    dispatch('fetch', {
+      group: 'user',
+      type: 'demoUserConfig',
+      url: getters.endpoints.demoUserConfig,
+      options: {
+        method: 'POST',
+        body
+      },
+      message: 'save demo user configuration'
+    })
+  },
+  getDemoUserConfig ({dispatch, getters}) {
+    dispatch('fetch', {
+      group: 'dcloud',
+      type: 'demoUserConfig',
+      url: getters.endpoints.demoUserConfig,
+      mutation: types.SET_DEMO_USER_CONFIG,
+      message: 'get demo user configuration'
+    })
+  },
   getDemoBaseConfig ({dispatch, getters}) {
     dispatch('fetch', {
       group: 'dcloud',

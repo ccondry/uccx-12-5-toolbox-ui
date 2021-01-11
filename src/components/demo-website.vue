@@ -132,10 +132,10 @@ export default {
       'jwtUser'
     ]),
     isWorking () {
-      return this.working.user.demoConfig
+      return this.working.user.demoUserConfig
     },
     isLoading () {
-      return this.loading.dcloud.verticals
+      return this.loading.dcloud.verticals || this.loading.dcloud.demoUserConfig
     },
     autocompleteOwners () {
       // all owners of all verticals
@@ -220,7 +220,7 @@ export default {
 
   methods: {
     ...mapActions([
-      'saveDemoConfig'
+      'saveDemoUserConfig'
     ]),
     updateCache () {
       try {
@@ -249,11 +249,8 @@ export default {
       const data = {
         multichannel: e.target.value
       }
-      // save demo config for user
-      this.saveDemoConfig({
-        data,
-        showNotification: false
-      })
+      // save vertical
+      this.saveDemoUserConfig(data)
     },
     verticalChanged (e) {
       console.log('vertical selected:', e.target.value)
@@ -262,11 +259,7 @@ export default {
         vertical: e.target.value
       }
       // save vertical
-      this.saveDemoConfig({
-        data,
-        showNotification: false
-      })
-      // await this.loadDemoConfig(false)
+      this.saveDemoUserConfig(data)
     },
     clickGo (e) {
       console.log('user clicked button to go to demo website. going to', this.brandDemoLink)

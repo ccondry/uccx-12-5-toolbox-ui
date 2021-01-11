@@ -14,7 +14,7 @@ function parseJwt (token) {
 
 const state = {
   jwt: null,
-  demoConfig: {}
+  provision: {}
 }
 
 const mutations = {
@@ -22,12 +22,12 @@ const mutations = {
     state.jwt = data
   },
   [types.SET_PROVISION] (state, data) {
-    state.demoConfig = data
+    state.provision = data
   }
 }
 
 const getters = {
-  demoUserConfig: state => state.demoConfig,
+  provision: state => state.provision,
   isAdminSu: (state, getters) => {
     try {
       return getters.jwtUser.suJwt
@@ -58,7 +58,7 @@ const getters = {
     }
   },
   isProvisioned: (state, getters) => {
-    return Object.keys(getters.demoUserConfig).length > 0
+    return Object.keys(getters.provision).length > 0
   }
 }
 
@@ -134,26 +134,27 @@ const actions = {
       dispatch('getProvision')
     }
   },
-  getProvision ({dispatch, getters}) {
-    dispatch('fetch', {
+  async getProvision ({dispatch, getters}) {
+    const response = await dispatch('fetch', {
       group: 'user',
       type: 'provision',
       url: getters.endpoints.provision,
       message: 'get provision information',
       mutation: types.SET_PROVISION
     })
-  },
-  saveDemoUserConfig ({dispatch, getters}, body) {
-    dispatch('fetch', {
-      group: 'user',
-      type: 'demoConfig',
-      url: getters.endpoints.demoConfig,
-      options: {
-        method: 'POST',
-        body
-      },
-      message: 'save demo configuration'
-    })
+    if (response instanceof Error) {
+      // error
+      Toast.open({
+        message: `Failed to get your account provision information: ${response.message}`,
+        type: 'is-danger',
+        duration: 12 * 1000,
+        queue: false
+      })
+    } else {
+      // success
+      // get user's demo configuration, like vertical selected
+      dispatch('getDemoUserConfig')
+    }
   },
   setJwt ({commit, dispatch}, jwt) {
     try {

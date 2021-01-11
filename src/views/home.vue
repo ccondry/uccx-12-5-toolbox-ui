@@ -88,10 +88,8 @@ export default {
       'loading',
       'working',
       'instance',
-      'demoBaseConfig',
       'isProvisioned',
-      'isLocked',
-      'demoUserConfig'
+      'isLocked'
     ]),
     isLoading () {
       return this.loading.app.environment ||

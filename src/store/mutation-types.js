@@ -14,6 +14,8 @@ export const SET_DCLOUD_SESSION = 'SET_DCLOUD_SESSION'
 export const SET_DCLOUD_INSTANCES = 'SET_DCLOUD_INSTANCES'
 // instant demo base configuration
 export const SET_DEMO_BASE_CONFIG = 'SET_DEMO_BASE_CONFIG'
+// instant demo user configuration for this session
+export const SET_DEMO_USER_CONFIG = 'SET_DEMO_USER_CONFIG'
 // verticals/brands
 export const SET_VERTICALS = 'SET_VERTICALS'
 // user provision info
