@@ -1,15 +1,17 @@
 <template>
   <panel title="Provision" aria-id="provision">
+    <!-- provisioning is not enabled for this instance -->
     <p v-if="isLocked">
-      <!-- provisioning is not enabled for this instance -->
       Provisioning is disabled for this demo instance. Please try using
       another dCloud datacenter or a newer version of this demo (if one is
       available).
-    </p>  
-    <p v-if="!isLocked">
+    </p>
+
+    <!-- provision is enabled and not started yet -->
+    <p v-if="!isLocked && !provisionStatus">
       Would you like to provision your account?
     </p>
-    <b-field v-if="!isLocked">
+    <b-field v-if="!isLocked && !provisionStatus">
       <b-button
       :disabled="working.user.provision"
       type="is-success"
@@ -20,6 +22,13 @@
         {{ buttonText }}
       </b-button>
     </b-field>
+
+    <!-- provision in progress -->
+    <p v-if="provisionStatus === 'working'">
+      Your account is being provisioned. It may take up to 20 minutes for it to
+      complete. This page will automatically change when your account is ready
+      to demo.
+    </p>
   </panel>
 </template>
 
@@ -37,30 +46,14 @@ export default {
       'jwtUser',
       'working',
       'sessionId',
-      'isLocked'
+      'isLocked',
+      'provisionStatus'
     ]),
     buttonText () {
       if (this.working.user.provision) {
         return `Working - ${this.provisionTime}`       
       } else {
         return 'Provision Me'
-      }
-    },
-    timeLeft () {
-      // returns the estimated time remaining to complete provisioning
-      // const now = new Date().getTime()
-      const timeLeft = this.timerEnd - this.timerNow
-      return Math.ceil(timeLeft / 1000)
-    },
-    provisionTime () {
-      if (this.timeLeft < 0) {
-        return 'Almost done...'
-      } else if (this.timeLeft > 500) {
-        // validate sane output
-        // over 500 is probably wrong... so say something else
-        return `Estimating time remaining...`
-      } else {
-        return `About ${this.timeLeft} seconds remaining...`
       }
     }
   },
@@ -69,12 +62,6 @@ export default {
     ...mapActions([
       'provisionUser'
     ]),
-    startTimer () {
-      // advance the timer every 1 second
-      setInterval(() => {
-        this.timerNow = new Date().getTime()
-      }, 1000)
-    },
     clickProvision () {
       console.log('user clicked Provision Me button')
       this.$buefy.dialog.prompt({
@@ -90,9 +77,6 @@ export default {
         onConfirm: password => {
           this.provisionUser(password)
           // first provision
-          // set timer for working estimate to 60 seconds
-          this.timerEnd = new Date().getTime() + 60 * 1000
-          this.startTimer()
         }
       })
     }

@@ -58,7 +58,18 @@ const getters = {
     }
   },
   isProvisioned: (state, getters) => {
-    return Object.keys(getters.provision).length > 0
+    try {
+      return getters.provision.status === 'complete'
+    } catch (e) {
+      return false
+    }
+  },
+  provisionStatus: (state, getters) => {
+    try {
+      return getters.provision.status
+    } catch (e) {
+      return null
+    }
   }
 }
 
@@ -152,6 +163,11 @@ const actions = {
       })
     } else {
       // success
+      // is it still working?
+      if (response.status === 'working') {
+        // check again in 30 seconds
+        setTimeout(() => dispatch('getProvision'), 30 * 1000)
+      }
     }
   },
   setJwt ({commit, dispatch}, jwt) {
