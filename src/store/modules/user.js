@@ -14,7 +14,8 @@ function parseJwt (token) {
 
 const state = {
   jwt: null,
-  provision: {}
+  provision: {},
+  provisionStarted: false
 }
 
 const mutations = {
@@ -23,11 +24,15 @@ const mutations = {
   },
   [types.SET_PROVISION] (state, data) {
     state.provision = data
+  },
+  [types.SET_PROVISION_STARTED] (state, data) {
+    state.provisionStarted = data
   }
 }
 
 const getters = {
   provision: state => state.provision,
+  provisionStarted: state => state.provisionStarted,
   isAdminSu: (state, getters) => {
     try {
       return getters.jwtUser.suJwt
@@ -137,11 +142,14 @@ const actions = {
     } else {
       // success
       Toast.open({
-        message: `Successfully provisioned your user account.`,
+        message: `Successfully started provisioning your user account. Please allow up to 20 minutes for provision to complete.`,
         type: 'is-success',
-        duration: 6 * 1000,
+        duration: 10 * 1000,
         queue: true
       })
+      // mark started provision
+      commit(types.SET_PROVISION_STARTED, true)
+      // update provision info now
       dispatch('getProvision')
     }
   },

@@ -8,7 +8,7 @@
     </p>
 
     <!-- provision is enabled and not started yet -->
-    <p v-if="!isLocked && !provisionStatus">
+    <p v-if="!isLocked && !provisionStatus && !provisionStarted">
       Would you like to provision your account?
     </p>
     <b-field v-if="!isLocked && !provisionStatus">
@@ -24,7 +24,7 @@
     </b-field>
 
     <!-- provision in progress -->
-    <p v-if="provisionStatus === 'working'">
+    <p v-if="provisionStarted || provisionStatus === 'working'">
       Your account is being provisioned. It may take up to 20 minutes for it to
       complete. This page will automatically change when your account is ready
       to demo.
@@ -47,7 +47,8 @@ export default {
       'working',
       'sessionId',
       'isLocked',
-      'provisionStatus'
+      'provisionStatus',
+      'provisionStarted'
     ]),
     buttonText () {
       if (this.working.user.provision) {
