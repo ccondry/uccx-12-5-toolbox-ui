@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.1.14-6
+
+### Bug Fixes
+* **Agents:** Fix supervisor agent login username
+
+
 # 2021.1.14-5
 
 ### Features
