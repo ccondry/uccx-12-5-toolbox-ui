@@ -31,6 +31,26 @@ const getters = {
         name: 'Rick Barrows',
         role: 'Supervisor',
         description: 'Main Supervisor'
+      },
+      {
+        picture: imageFolder + '/helen.png',
+        finesseUsername: 'hliang' + getters.jwtUser.id,
+        rdpUsername: 'hliang' + getters.jwtUser.id,
+        password: 'C1sco12345',
+        extension: '1083' + getters.jwtUser.id,
+        name: 'Helen Liang',
+        role: 'Agent',
+        description: '2Ring Agent'
+      },
+      {
+        picture: imageFolder + '/james.png',
+        finesseUsername: 'jabracks' + getters.jwtUser.id + '@dcloud.cisco.com',
+        rdpUsername: 'jabracks' + getters.jwtUser.id,
+        password: 'C1sco12345',
+        extension: '1084' + getters.jwtUser.id,
+        name: 'James Bracksted',
+        role: 'Supervisor',
+        description: '2Ring Supervisor'
       }
     ]
   }
