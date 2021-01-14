@@ -1,34 +1,42 @@
 <template>
   <panel title="Provision" aria-id="provision">
     <!-- provisioning is not enabled for this instance -->
-    <p v-if="isLocked">
-      Provisioning is disabled for this demo instance. Please try using
-      another dCloud datacenter or a newer version of this demo (if one is
-      available).
-    </p>
+    <div v-if="isLocked">
+      <p>
+        Provisioning is disabled for this demo instance. Please try using
+        another dCloud datacenter or a newer version of this demo (if one is
+        available).
+      </p>
+    </div>
 
     <!-- provision is enabled and not started yet -->
-    <p v-if="!isLocked && !provisionStatus && !provisionStarted">
-      Would you like to provision your account?
-    </p>
-    <b-field v-if="!isLocked && !provisionStatus">
-      <b-button
-      :disabled="working.user.provision"
-      type="is-success"
-      rounded
-      expanded
-      @click.prevent="clickProvision"
-      >
-        {{ buttonText }}
-      </b-button>
-    </b-field>
+    <div v-if="!isLocked && !provisionStatus && !provisionStarted">
+      <p>
+        Would you like to provision your account?
+      </p>
+      <b-field v-if="!isLocked && !provisionStatus">
+        <b-button
+        :disabled="working.user.provision"
+        type="is-success"
+        rounded
+        expanded
+        @click.prevent="clickProvision"
+        >
+          {{ buttonText }}
+        </b-button>
+      </b-field>
+    </div>
 
     <!-- provision in progress -->
-    <p v-if="provisionStarted || provisionStatus === 'working'">
-      Your account is being provisioned. It may take up to 20 minutes for it to
-      complete. This page will automatically change when your account is ready
-      to demo.
-    </p>
+    <div v-if="provisionStarted || provisionStatus === 'working'">
+      <p>
+        Your account is being provisioned. It may take up to 20 minutes for it to
+        complete.
+      </p>
+      <p>
+        This page will automatically change when your account is ready to use.
+      </p>
+    <div>
   </panel>
 </template>
 
