@@ -24,7 +24,7 @@ const getters = {
       },
       {
         picture: imageFolder + '/rick.png',
-        finesseUsername: 'rbarrows' + getters.jwtUser.id + '@dcloud.cisco.com',
+        finesseUsername: 'rbarrows' + getters.jwtUser.id,
         rdpUsername: 'rbarrows' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1082' + getters.jwtUser.id,
@@ -44,7 +44,7 @@ const getters = {
       },
       {
         picture: imageFolder + '/james.png',
-        finesseUsername: 'jabracks' + getters.jwtUser.id + '@dcloud.cisco.com',
+        finesseUsername: 'jabracks' + getters.jwtUser.id,
         rdpUsername: 'jabracks' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1084' + getters.jwtUser.id,
