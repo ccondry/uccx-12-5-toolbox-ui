@@ -50,7 +50,7 @@
       </b-progress>
 
       <p v-if="waitingOnTask">
-        Currently waiting on {{ waitingOnTask }}
+        Currently waiting on {{ waitingOnTask }}...
       </p>
     </div>
 
