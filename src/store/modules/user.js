@@ -150,7 +150,7 @@ const actions = {
       // mark started provision
       commit(types.SET_PROVISION_STARTED, true)
       // update provision info in 10 seconds
-      setTimeout(() => dispatch('getProvision'), 10 * 1000)
+      setTimeout(() => dispatch('getProvision'), 20 * 1000)
     }
   },
   async getProvision ({dispatch, getters}) {
