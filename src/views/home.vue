@@ -95,11 +95,12 @@ export default {
       'instance',
       'isProvisioned',
       'isLocked',
-      'fatalErrors'
+      'fatalErrors',
+      'provisionStatus'
     ]),
     isLoading () {
       return this.loading.app.environment ||
-      this.loading.user.provision
+      (this.loading.user.provision && this.provisionStatus !== 'working')
     }
   },
 

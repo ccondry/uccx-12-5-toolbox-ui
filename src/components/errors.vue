@@ -10,12 +10,13 @@
       </li>
     </ol> -->
     <section>
-    <b-message
-    v-for="(error, index) of fatalErrors" :key="index"
-    type="is-danger"
-    >
-      {{ error.message || error}}
-    </b-message>
+      <b-message
+      v-for="(error, index) of fatalErrors"
+      :key="index"
+      type="is-danger"
+      >
+        {{ error.message || error }}
+      </b-message>
     </section>
   </panel>
 </template>

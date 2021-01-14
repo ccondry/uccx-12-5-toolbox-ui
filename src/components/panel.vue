@@ -21,7 +21,7 @@
       <slot />
     </div> -->
     <div class="panel-block box">
-      <div class="content">
+      <div class="content" style="position: relative;">
         <slot /> 
       </div>
     </div>

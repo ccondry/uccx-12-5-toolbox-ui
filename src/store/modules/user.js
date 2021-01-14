@@ -149,8 +149,8 @@ const actions = {
       })
       // mark started provision
       commit(types.SET_PROVISION_STARTED, true)
-      // update provision info in 30 seconds
-      setTimeout(() => dispatch('getProvision'), 30 * 1000)
+      // update provision info in 5 seconds
+      setTimeout(() => dispatch('getProvision'), 5 * 1000)
     }
   },
   async getProvision ({dispatch, getters}) {
@@ -173,8 +173,8 @@ const actions = {
       // success
       // is it still working?
       if (response.status === 'working') {
-        // check again in 30 seconds
-        setTimeout(() => dispatch('getProvision'), 30 * 1000)
+        // check again in 20 seconds
+        setTimeout(() => dispatch('getProvision'), 20 * 1000)
       }
     }
   },

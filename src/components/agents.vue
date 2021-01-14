@@ -1,5 +1,5 @@
 <template>
-  <panel title="Agents and Supervisor" aria-id="agents">
+  <panel title="Agents and Supervisors" aria-id="agents">
     <div style="display: flex; flex-wrap: wrap;">
       <agent
       v-for="(agent, i) of agents"
