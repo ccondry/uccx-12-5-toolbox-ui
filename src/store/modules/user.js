@@ -116,7 +116,7 @@ const actions = {
       message: 'reset password'
     })
   },
-  async provisionUser ({dispatch, getters}, password) {
+  async provisionUser ({commit, dispatch, getters}, password) {
     console.log('user.provisionUser action...')
     const response = await dispatch('fetch', {
       group: 'user',
