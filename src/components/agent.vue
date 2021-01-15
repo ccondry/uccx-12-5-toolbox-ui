@@ -2,7 +2,7 @@
   <div class="tile is-parent">
     <article
     class="tile is-child box"
-    style="border: 1px solid rgb(204, 204, 204);"
+    style="border: 1px solid rgb(204, 204, 204); min-width: 20rem;"
     >
       <p class="title">
         {{ agent.name }}
@@ -16,19 +16,19 @@
 
       <p>
         <strong>
-          RDP Username:
-          {{ agent.rdpUsername }}
+          Username:
+          {{ agent.finesseUsername }}
         </strong>
-        <copy :value="agent.rdpUsername" name="RDP Username" />
+        <copy :value="agent.finesseUsername" name="Username" />
       </p>
 
-      <p>
+      <!-- <p>
         <strong style="white-space:nowrap">
           Finesse Username:
           {{ agent.finesseUsername }}
         </strong>
         <copy :value="agent.finesseUsername" name="Finesse Username" />
-      </p>
+      </p> -->
 
       <p>
         <strong>
