@@ -4,6 +4,14 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.1.15-1
+
+### Features
+* **Demo Website:** Remove unavailable options, move Demo Website button to
+improve display on mobile, and change the button to be a link.
+* **Loading:** Improve site display when initally loading 
+
+
 # 2021.1.15
 
 ### Bug Fixes
