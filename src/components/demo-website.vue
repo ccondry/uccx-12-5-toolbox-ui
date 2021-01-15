@@ -27,7 +27,7 @@
               -----------------------------------------
             </option>
             <option
-            v-for="(brand, index) in otherBrands"
+            v-for="(brand, index) in myBrands"
             :key="'other' + index"
             :value="brand.id"
             >
@@ -47,54 +47,6 @@
           </b-button>
         </b-field>
       </b-field>
-      
-      <b-field>
-        <b-checkbox
-        v-model="showMore"
-        >
-          Show More
-        </b-checkbox>
-      </b-field>
-
-      <b-field v-show="showMore">
-        <div class="field">
-          <div class="field">
-            <b-radio
-            v-if="isAdmin"
-            v-model="brandFilter"
-            native-value="all"
-            >
-              Show all verticals
-            </b-radio>
-          </div>
-          <div class="field">
-            <b-radio
-            v-model="brandFilter"
-            native-value="mine"
-            >
-              Show my verticals
-            </b-radio>
-          </div>
-          <div class="field">
-            <b-radio
-            v-model="brandFilter"
-            native-value="other"
-            >
-              <span style="float: left;">Show this user's verticals:</span>
-            </b-radio>
-
-            <b-autocomplete
-            v-model="ownerFilter"
-            :data="autocompleteOwners"
-            style="width: 20em;"
-            >
-              <template slot="empty">
-                No results found
-              </template>
-            </b-autocomplete>
-          </div>
-        </div>
-      </b-field>
 
       <p>
         Note: You can create and configure your own vertical on the
@@ -112,11 +64,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      ownerFilter: '',
-      brandFilter: 'mine',
       vertical: '',
-      multichannel: 'ece',
-      showMore: false
+      multichannel: 'ece'
     }
   },
 
@@ -136,19 +85,6 @@ export default {
     },
     isLoading () {
       return this.loading.dcloud.verticals || this.loading.dcloud.demoUserConfig
-    },
-    autocompleteOwners () {
-      // all owners of all verticals
-      const allOwners = this.verticals.map(v => v.owner)
-      // unique owners list
-      const uniqueOwners = Array.from(new Set(allOwners))
-      // remove
-      return uniqueOwners.filter((option) => {
-        return option
-        .toString()
-        .toLowerCase()
-        .indexOf(this.ownerFilter.toLowerCase()) >= 0
-      })
     },
     sortedBrands () {
       // make a mutable copy of the store data
@@ -176,23 +112,8 @@ export default {
     systemBrands () {
       return this.sortedBrands.filter(v => !v.owner || v.owner === 'system' || v.owner === null)
     },
-    otherBrands () {
-      switch (this.brandFilter) {
-        case 'all': return this.userBrands
-        case 'mine': return this.myBrands
-        case 'other': return this.filteredSortedBrands
-        default: return []
-      }
-    },
-    userBrands () {
-      return this.sortedBrands.filter(v => v.owner && v.owner !== 'system' && v.owner !== null)
-    },
     myBrands () {
       return this.sortedBrands.filter(v => v.owner === this.jwtUser.username)
-    },
-    filteredSortedBrands () {
-      // filter to only show the brands owned by specified user
-      return this.sortedBrands.filter(v => v.owner === this.ownerFilter)
     }
   },
 
@@ -201,16 +122,11 @@ export default {
       this.updateSelection()
     },
     vertical (val, oldVal) {
-      // console.log('vertical watcher: vertical changed:', val)
-      // console.log('this.sortedbrands.length = ', this.sortedBrands.length)
       this.updateSelection()
     },
     demoUserConfig (val) {
       console.log('demo user config changed:', val)
       this.updateCache()
-    },
-    ownerFilter () {
-      this.brandFilter = 'other'
     }
   },
 
@@ -234,14 +150,6 @@ export default {
     },
     updateSelection () {
       const selectedVertical = this.verticals.find(v => v.id === this.vertical)
-      console.log('selectedVertical = ', selectedVertical)
-      // is this selected vertical owned by someone else?
-      if (selectedVertical && selectedVertical.owner !== 'system' &&
-      selectedVertical.owner !== this.jwtUser.username) {
-        // selected vertical owned by a user that is not this user
-        this.brandFilter = 'other'
-        this.ownerFilter = selectedVertical.owner
-      }
     },
     multichannelChanged (e) {
       console.log('multichannel changed', e.target.value)
