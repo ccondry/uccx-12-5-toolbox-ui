@@ -3,7 +3,7 @@
     <p>
       After you have connected to the demo session VPN,
       connect to the Workstation using Microsoft Remote Desktop
-      Client to start the demo.
+      Client.
     </p>
 
     <p>
