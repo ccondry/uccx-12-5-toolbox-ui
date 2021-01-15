@@ -7,7 +7,13 @@
     <errors v-if="fatalErrors.length" />
 
     <!-- Provision -->
-    <provision v-if="!isProvisioned && !fatalErrors.length" />
+    <provision v-if="!loading.user.provision && !isProvisioned && !fatalErrors.length" />
+
+    <!-- Loading -->
+    <loading v-if="isLoading" />
+
+    <!-- Demo Website -->
+    <demo-website v-if="isProvisioned" />
 
     <!-- VPN -->
     <vpn v-if="isProvisioned" />
@@ -17,9 +23,6 @@
 
     <!-- Agents and Supervisors -->
     <agents v-if="isProvisioned" />
-
-    <!-- Demo Website -->
-    <demo-website v-if="isProvisioned" />
 
     <!-- Mobile App -->
     <mobile-app v-if="isProvisioned" />
@@ -39,8 +42,6 @@
     <!-- Copyright and version footer -->
     <app-footer style="margin-bottom: 1rem;" />
 
-    <!-- loading -->
-    <b-loading :active="isLoading" />
   </section>
 </template>
 
@@ -60,6 +61,7 @@ import Reprovision from '../components/reprovision'
 import Provision from '../components/provision'
 import AppFooter from '../components/app-footer'
 import Errors from '../components/errors'
+import Loading from '../components/loading'
 
 export default {
   components: {
@@ -75,7 +77,8 @@ export default {
     Reprovision,
     Provision,
     AppFooter,
-    Errors
+    Errors,
+    Loading
   },
 
   data () {
@@ -109,26 +112,6 @@ export default {
     ]),
     clickAdmin () {
       this.$router.push({name: 'Admin'}).catch(e => {})
-    },
-    clicksetUserPassword () {
-      this.$buefy.dialog.prompt({
-        title: 'Reset Password',
-        message: 'Choose your new password',
-        inputAttrs: {
-          type: 'password',
-          placeholder: 'Your New Password',
-          'aria-placeholder': 'Your New Password'
-        },
-        confirmText: 'Submit',
-        rounded: true,
-        onConfirm: (password) => {
-          this.setUserPassword({
-            username: this.jwtUser.sub,
-            password
-          })
-        },
-        type: 'is-success'
-      })
     }
   }
 }

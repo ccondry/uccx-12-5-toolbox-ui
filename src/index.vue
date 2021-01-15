@@ -2,8 +2,6 @@
   <div>
     <!-- top navbar -->
     <navbar />
-    <!-- loading -->
-    <b-loading :active="isLoading" :is-full-page="true" />
     <!-- main -->
     <div
     v-if="isLoggedIn"
