@@ -47,7 +47,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      url: 'https://cuic1.dcloud.cisco.com'
+      url: 'https://uccx1.dcloud.cisco.com:8444'
     }
   },
 
