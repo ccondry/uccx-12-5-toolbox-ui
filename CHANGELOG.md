@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.1.15
+
+### Bug Fixes
+* **CUIC:** Fix the CUIC URL
+
+
 # 2021.1.14-6
 
 ### Bug Fixes
