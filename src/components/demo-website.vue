@@ -3,53 +3,58 @@
     <div class="content" style="position: relative">
       <b-loading :active="isLoading || isWorking" :is-full-page="false" />
       <p>
-        Choose the vertical you want to use, then click Go to Demo Website to
-        show the customer side of the demo.
+        Choose the vertical you want to use:
       </p>
-      <b-field>
-        <b-field style="margin-right: 1em;">
-          <b-select 
-          v-model="vertical" 
-          :disabled="working.app.user"
-          @change.native="verticalChanged" 
-          >
-            <option :value="null" disabled selected>
-              Choose Your Demo Vertical
-            </option>
-            <option
-            v-for="(brand, index) in systemBrands" 
-            :key="'system' + index"
-            :value="brand.id"
-            >
-              {{ `${brand.name} (${brand.id})` }}
-            </option>
-            <option disabled>
-              -----------------------------------------
-            </option>
-            <option
-            v-for="(brand, index) in myBrands"
-            :key="'other' + index"
-            :value="brand.id"
-            >
-              {{ `${brand.name} (${brand.id})` }}
-            </option>
-          </b-select>
-        </b-field>
 
-        <b-field>
-          <b-button
-          type="is-success"
-          rounded
-          :disabled="working.app.user"
-          @click="clickGo"
+      <!-- vertical selection -->
+      <b-field style="margin-right: 1em;">
+        <b-select 
+        v-model="vertical" 
+        :disabled="working.app.user"
+        @change.native="verticalChanged" 
+        >
+          <option :value="null" disabled selected>
+            Choose Your Demo Vertical
+          </option>
+          <option
+          v-for="(brand, index) in systemBrands" 
+          :key="'system' + index"
+          :value="brand.id"
           >
-            Go to Demo Website
-          </b-button>
-        </b-field>
+            {{ `${brand.name} (${brand.id})` }}
+          </option>
+          <option disabled>
+            -----------------------------------------
+          </option>
+          <option
+          v-for="(brand, index) in myBrands"
+          :key="'other' + index"
+          :value="brand.id"
+          >
+            {{ `${brand.name} (${brand.id})` }}
+          </option>
+        </b-select>
       </b-field>
 
       <p>
-        Note: You can create and configure your own vertical on the
+        Then click this button to show the customer side of the demo.
+      </p>
+      <!-- demo website button -->
+      <b-field>
+        <b-button
+        tag="a"
+        type="is-success"
+        rounded
+        :disabled="working.app.user"
+        :href="this.brandDemoLink"
+        target="_blank"
+        >
+          Go to Demo Website
+        </b-button>
+      </b-field>
+
+      <p>
+        Note: You can create and configure your own verticals on the
         <a href="/branding" target="brand-toolbox">
           <strong>Demo Branding Toolbox</strong>
         </a>.
