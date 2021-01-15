@@ -17,16 +17,18 @@
       <li>
         Password:
         <strong>Your chosen demo VPN password</strong>
-        <b-button
-        style="margin-left: 1rem;"
-        type="is-primary"
-        rounded
-        @click="clickResetPassword"
-        >
-          Reset Password
-        </b-button>
       </li>
     </ul>
+    <b-field>
+      <b-button
+      style="margin-left: 1rem;"
+      type="is-primary"
+      rounded
+      @click="clickResetPassword"
+      >
+        Reset VPN Password
+      </b-button>
+    </b-field>
     <p>
       Note: If you have any issues resolving DNS in the demo while using
       Windows, try rebooting Windows to resolve this issue.
