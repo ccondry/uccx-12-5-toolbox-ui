@@ -139,7 +139,7 @@ export default {
       console.log('user clicked Provision Me button')
       this.$buefy.dialog.prompt({
         title: 'Provision',
-        message: `Please choose a password for your VPN account:`,
+        message: `Please choose a new password for your VPN account. <br>Do not reuse your Cisco account password.`,
         inputAttrs: {
           placeholder: 'Your new VPN password',
           type: 'password'
