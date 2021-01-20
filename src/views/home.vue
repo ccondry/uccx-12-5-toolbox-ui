@@ -41,7 +41,6 @@
 
     <!-- Copyright and version footer -->
     <app-footer style="margin-bottom: 1rem;" />
-
   </section>
 </template>
 
