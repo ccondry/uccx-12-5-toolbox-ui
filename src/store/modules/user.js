@@ -153,7 +153,7 @@ const actions = {
       setTimeout(() => dispatch('getProvision'), 20 * 1000)
     }
   },
-  async getProvision ({dispatch, getters}) {
+  async getProvision ({commit, dispatch, getters}) {
     const response = await dispatch('fetch', {
       group: 'user',
       type: 'provision',
@@ -173,6 +173,8 @@ const actions = {
       // success
       // is it still working?
       if (response.status === 'working') {
+        // mark started provision
+        commit(types.SET_PROVISION_STARTED, true)
         // check again in 20 seconds
         setTimeout(() => dispatch('getProvision'), 20 * 1000)
       }

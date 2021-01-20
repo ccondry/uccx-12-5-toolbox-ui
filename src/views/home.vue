@@ -6,11 +6,11 @@
     <!-- Fatal Errors -->
     <errors v-if="fatalErrors.length" />
 
-    <!-- Provision -->
-    <provision v-if="!loading.user.provision && !isProvisioned && !fatalErrors.length" />
-
     <!-- Loading -->
     <loading v-if="isLoading" />
+
+    <!-- Provision -->
+    <provision v-if="showProvision" />
 
     <!-- Demo Website -->
     <demo-website v-if="isProvisioned" />
@@ -99,11 +99,18 @@ export default {
       'isProvisioned',
       'isLocked',
       'fatalErrors',
-      'provisionStatus'
+      'provisionStatus',
+      'provisionStarted'
     ]),
     isLoading () {
       return this.loading.app.environment ||
       (this.loading.user.provision && this.provisionStatus !== 'working')
+    },
+    showProvision () {
+      return (this.provisionStarted) ||
+      (!this.loading.user.provision &&
+      !this.isProvisioned &&
+      !this.fatalErrors.length)
     }
   },
 
