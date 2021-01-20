@@ -4,6 +4,14 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.1.20
+
+### Features
+* **Provision:** Update password prompt text to be clear that we want the user
+to choose a password that is not their Cisco password. Also keep the provision
+panel visible when refreshing the provision status.
+
+
 # 2021.1.15-1
 
 ### Features
