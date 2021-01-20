@@ -46,7 +46,7 @@
         type="is-success"
         rounded
         :disabled="working.app.user"
-        :href="this.brandDemoLink"
+        :href="brandDemoLink"
         target="_blank"
         >
           Go to Demo Website
