@@ -55,7 +55,7 @@
 
       <p>
         Note: You can create and configure your own verticals on the
-        <a href="/branding" target="brand-toolbox">
+        <a href="/branding" target="_blank">
           <strong>Demo Branding Toolbox</strong>
         </a>.
       </p>
