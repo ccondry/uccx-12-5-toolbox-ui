@@ -65,7 +65,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      totalTasks: 38,
+      totalTasks: 37,
       taskNames: {
         uccxUserSync: 'UCCX to sync new agents',
         finesseTeamSync: 'Finesse to sync new teams',
