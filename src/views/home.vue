@@ -106,10 +106,27 @@ export default {
       (this.loading.user.provision && this.provisionStatus !== 'working')
     },
     showProvision () {
-      return (this.provisionStarted) ||
-      (!this.loading.user.provision &&
-      !this.isProvisioned &&
-      !this.fatalErrors.length)
+      // hide if provision complete
+      if (this.isProvisioned) {
+        return false
+      }
+      // show if provision has started
+      if (this.provisionStarted) {
+        return true
+      }
+      
+      // show if there are fatal errors
+      if (this.fatalErrors.length) {
+        return true
+      }
+
+      // show if provision status has been loaded and it's not complete
+      if (!this.loading.user.provision && !this.isProvisioned) {
+        return true
+      }
+
+      // else hide
+      return false
     }
   },
 
