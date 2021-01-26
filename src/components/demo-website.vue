@@ -59,6 +59,12 @@
           <strong>Demo Branding Toolbox</strong>
         </a>.
       </p>
+      <p>
+        Note: You can manage your customer profile on the 
+        <a href="/customer" target="_blank">
+          <strong>Customer Profile Toolbox</strong>
+        </a>.
+      </p>
     </div>
   </panel>
 </template>
