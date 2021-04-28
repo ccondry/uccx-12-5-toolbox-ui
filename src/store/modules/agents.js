@@ -5,7 +5,7 @@ const getters = {
       {
         picture: imageFolder + '/sandra.png',
         finesseUsername: 'sjeffers' + getters.jwtUser.id,
-        rdpUsername: 'sjeffers' + getters.jwtUser.id,
+        rdpUsername: 'dcloud\\sjeffers' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1080' + getters.jwtUser.id,
         name: 'Sandra Jefferson',
@@ -15,7 +15,7 @@ const getters = {
       {
         picture: imageFolder + '/josh.png',
         finesseUsername: 'jopeters' + getters.jwtUser.id,
-        rdpUsername: 'jopeters' + getters.jwtUser.id,
+        rdpUsername: 'dcloud\\jopeters' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1081' + getters.jwtUser.id,
         name: 'Josh Peterson',
@@ -25,7 +25,7 @@ const getters = {
       {
         picture: imageFolder + '/rick.png',
         finesseUsername: 'rbarrows' + getters.jwtUser.id,
-        rdpUsername: 'rbarrows' + getters.jwtUser.id,
+        rdpUsername: 'dcloud\\rbarrows' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1082' + getters.jwtUser.id,
         name: 'Rick Barrows',
@@ -35,7 +35,7 @@ const getters = {
       {
         picture: imageFolder + '/helen.png',
         finesseUsername: 'hliang' + getters.jwtUser.id,
-        rdpUsername: 'hliang' + getters.jwtUser.id,
+        rdpUsername: 'dcloud\\hliang' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1083' + getters.jwtUser.id,
         name: 'Helen Liang',
@@ -45,7 +45,7 @@ const getters = {
       {
         picture: imageFolder + '/james.png',
         finesseUsername: 'jabracks' + getters.jwtUser.id,
-        rdpUsername: 'jabracks' + getters.jwtUser.id,
+        rdpUsername: 'dcloud\\jabracks' + getters.jwtUser.id,
         password: 'C1sco12345',
         extension: '1084' + getters.jwtUser.id,
         name: 'James Bracksted',
