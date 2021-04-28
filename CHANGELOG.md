@@ -4,6 +4,12 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.4.28-1
+
+### Fixes
+* **Agents:** Add "dcloud\" prefix to the RDP usernames.
+
+
 # 2021.4.28
 
 ### Fixes
