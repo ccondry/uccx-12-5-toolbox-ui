@@ -9,12 +9,12 @@
     "build": "yarn dist",
     "build:test": "yarn dist:test",
     "clean": "rimraf dist",
-    "dist2": "cross-env NODE_ENV=development PLAY_ENV=true webpack --config tools/webpack.demo.js",
+    "dist2": "cross-env NODE_ENV=development webpack --config tools/webpack.demo.js",
     "dist": "cross-env NODE_ENV=production webpack --config tools/webpack.demo.js",
     "dist:test": "yarn dist && node tools/test.js",
     "lint": "eslint src --quiet --ext .js,.vue",
     "prepublishOnly": "yarn build",
-    "start": "cross-env NODE_ENV=development PLAY_ENV=true webpack-dev-server --config tools/webpack.demo.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config tools/webpack.demo.js"
   },
   "homepage": "https://dcloud-cms-rtp.cisco.com",
   "repository": {
