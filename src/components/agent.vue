@@ -14,7 +14,7 @@
 
       <img :src="agent.picture" style="width: 128px; height: 128px;">
 
-      <p>
+      <p style="white-space:nowrap">
         <strong>
           RDP Username:
           {{ agent.rdpUsername }}
@@ -22,8 +22,8 @@
         <copy :value="agent.rdpUsername" name="RDP Username" />
       </p>
 
-      <p>
-        <strong style="white-space:nowrap">
+      <p style="white-space:nowrap">
+        <strong>
           Finesse Username:
           {{ agent.finesseUsername }}
         </strong>
