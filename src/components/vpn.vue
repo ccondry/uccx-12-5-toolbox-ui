@@ -11,8 +11,8 @@
       </li>
       <li>
         Username:
-        <strong>{{ jwtUser.username }}</strong>
-        <copy :value="jwtUser.username" name="VPN Username" />
+        <strong>{{ jwtUser.vpnUsername }}</strong>
+        <copy :value="jwtUser.vpnUsername" name="VPN Username" />
       </li>
       <li>
         Password:
