@@ -78,7 +78,8 @@ const actions = {
     options = {},
     mutation,
     message,
-    showNotification = true,
+    showNotification = false,
+    showErrorNotification = true,
     onError,
     transform
   }) {
@@ -113,6 +114,12 @@ const actions = {
       const text = await response.text()
       // response code 200 - 299?
       if (response.ok) {
+        if (showNotification) {
+          Toast.open({
+            message: `Successfully ${message}.`,
+            type: 'is-success'
+          })
+        }
         try {
           // parse response text into JSON
           const json = JSON.parse(text)
@@ -167,7 +174,7 @@ const actions = {
       }
     } catch (e) {
       console.error(`${message} failed: ${e.message}`)
-      if (showNotification) {
+      if (showNotification || showErrorNotification) {
         Toast.open({
           message: `Failed to ${message}: ${e.message}`,
           type: 'is-danger',

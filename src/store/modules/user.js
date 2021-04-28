@@ -113,7 +113,8 @@ const actions = {
           password
         }
       },
-      message: 'reset password'
+      message: 'reset password',
+      showNotification: true
     })
   },
   async provisionUser ({commit, dispatch, getters}, password) {
