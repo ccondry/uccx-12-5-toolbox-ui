@@ -16,19 +16,19 @@
 
       <p>
         <strong>
-          Username:
-          {{ agent.finesseUsername }}
+          RDP Username:
+          {{ agent.rdpUsername }}
         </strong>
-        <copy :value="agent.finesseUsername" name="Username" />
+        <copy :value="agent.rdpUsername" name="RDP Username" />
       </p>
 
-      <!-- <p>
+      <p>
         <strong style="white-space:nowrap">
           Finesse Username:
           {{ agent.finesseUsername }}
         </strong>
         <copy :value="agent.finesseUsername" name="Finesse Username" />
-      </p> -->
+      </p>
 
       <p>
         <strong>
