@@ -33,6 +33,18 @@
       Note: If you have any issues resolving DNS in the demo while using
       Windows, try rebooting Windows to resolve this issue.
     </p>
+    <p>
+      You can download the AnyConnect installer here:
+    </p>
+    <ul>
+      <li>
+        <a :href="links.windows" download>AnyConnect 4.10 for Windows</a>
+        (Only the <strong>Core &amp; VPN</strong> component is necessary)
+      </li>
+      <li>
+        <a :href="links.mac" download>AnyConnect 4.10 for Mac</a>
+      </li>
+    </ul>
   </panel>
 </template>
 
@@ -40,6 +52,15 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  data () {
+    return {
+      links: {
+        windows: 'https://mm-static.cxdemo.net/anyconnect-win-4.10.00093-predeploy-k9.zip',
+        mac: 'https://mm-static.cxdemo.net/anyconnect-macos-4.10.00093-predeploy-k9.dmg'
+      }
+    }
+  },
+
   computed: {
     ...mapGetters([
       'vpnAddress',
