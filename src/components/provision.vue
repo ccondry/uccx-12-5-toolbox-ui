@@ -28,6 +28,36 @@
       </b-field>
     </div>
 
+    <!-- provision is enabled and was started but encountered an error -->
+    <div v-if="!isLocked && hasProvisionError">
+      <p>
+        There was an error provisioning your account. Would you like to try 
+        again?
+      </p>
+
+      Last Provision progress:
+      <b-progress
+      :value="percentDone"
+      size="is-medium"
+      show-value
+      type="is-success"
+      >
+        {{ tasksDone }} / {{ totalTasks }}
+      </b-progress>
+
+      <b-field>
+        <b-button
+        :disabled="working.user.provision"
+        type="is-success"
+        rounded
+        expanded
+        @click.prevent="clickProvision"
+        >
+          {{ buttonText }}
+        </b-button>
+      </b-field>
+    </div>
+
     <!-- provision in progress -->
     <div v-if="provisionStarted || provisionStatus === 'working'">
       <p>
@@ -90,6 +120,9 @@ export default {
       } else {
         return 'Provision Me'
       }
+    },
+    hasProvisionError () {
+      return this.provision.status === 'error'
     },
     percentDone () {
       try {

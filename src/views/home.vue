@@ -110,10 +110,6 @@ export default {
       if (this.isProvisioned) {
         return false
       }
-      // show if provision has started
-      if (this.provisionStarted) {
-        return true
-      }
       
       // show if there are fatal errors
       if (this.fatalErrors.length) {
