@@ -159,11 +159,11 @@ const actions = {
           }
         }
         // console.log('bad response', m)
-        let message = `${response.status} ${response.statusText}`
+        let errorMessage = `${response.status} ${response.statusText}`
         if (m.length) {
-          message += ` - ${m}`
+          errorMessage += ` - ${m}`
         }
-        const error = Error(message)
+        const error = Error(errorMessage)
         error.status = response.status
         error.statusText = response.statusText
         error.text = m
@@ -172,7 +172,7 @@ const actions = {
         }
         if (showNotification || showErrorNotification) {
           Toast.open({
-            message: `Failed to ${message}: ${e.message}`,
+            message: `Failed to ${message}: ${errorMessage}`,
             type: 'is-danger',
             duration: 6 * 1000,
             queue: false
