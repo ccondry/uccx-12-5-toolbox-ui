@@ -170,6 +170,14 @@ const actions = {
         if (typeof onError === 'function') {
           onError(error)
         }
+        if (showNotification || showErrorNotification) {
+          Toast.open({
+            message: `Failed to ${message}: ${e.message}`,
+            type: 'is-danger',
+            duration: 6 * 1000,
+            queue: false
+          })
+        }
         return error
       }
     } catch (e) {
