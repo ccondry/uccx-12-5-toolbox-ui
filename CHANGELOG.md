@@ -4,6 +4,13 @@ Version numbers are semver-compatible dates in YYYY.MM.DD-X format,
 where X is the revision number
 
 
+# 2021.6.29
+
+### Features
+* **Site:** Fixed some error messages not displaying, such as when resetting the
+VPN password.
+
+
 # 2021.5.6
 
 ### Features
