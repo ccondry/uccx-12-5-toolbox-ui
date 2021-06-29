@@ -103,7 +103,7 @@ const actions = {
     }
   },
   resetPassword ({dispatch, getters}, password) {
-    dispatch('fetch', {
+    return dispatch('fetch', {
       group: 'user',
       type: 'password',
       url: getters.endpoints.password,
